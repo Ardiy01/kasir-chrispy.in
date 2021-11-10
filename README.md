@@ -1,6 +1,6 @@
 **kasir-chrispy.in**
 =============
-Repository Projecet PBO pembuatan sistem informasi transaksi pembelian fried chicken ayam 3A berbasis OOP. Project ini dibuat menggunakan bahasa Java dengan databse SQL
+Repository Project PBO pembuatan sistem informasi transaksi pembelian fried chicken ayam 3A berbasis OOP. Project ini dibuat menggunakan bahasa Java dengan databse SQL
 
 **Kontributor:**
 =============
