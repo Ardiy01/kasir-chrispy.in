@@ -1,32 +1,34 @@
 package models;
 
-import controllers.pembeliController;
-import views.pembeliView;
+import cotrollers.pembeliController;
+import koneksi.Koneksi;
 
-import java.sql.*;
-import java.util.Scanner;
 
-public class pembeliModel implements pembeliController{
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class pembeliModel implements pembeliController {
     @Override
     public void tambahPembeli(String namaPembeli) throws SQLException {
-        try{
-            Connection conn = koneksi.koneksi.getConn();
+        try {
+            Connection connection = Koneksi.getConn();
 
-            String query = "INSERT INTO pembeli " +
-                            "(nama_pembeli) " +
-                            "VALUES (?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-
+            String query = "INSERT INTO pembeli" +
+                    "(nama_pembeli)" +
+                    "VALUES (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, namaPembeli);
-
             preparedStatement.executeUpdate();
-        }catch (Exception e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
     @Override
-    public void lihatPembeli() throws SQLException {
+    public void melihatPembeli(String lihatPembeli) throws SQLException {
 
     }
 }
+
+

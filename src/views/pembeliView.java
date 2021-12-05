@@ -7,8 +7,7 @@ public class pembeliView {
     public void tambahPembeli(String newNama){
         nama = newNama;
     }
-
-    public String getNama() {
+    public String getNama(){
         return nama;
     }
 }
