@@ -12,7 +12,7 @@ public class pembeliModel implements pembeliController {
     @Override
     public void tambahPembeli(String namaPembeli) throws SQLException {
         try {
-            Connection connection = Koneksi.getConn();
+            Connection connection = koneksi.Koneksi.getConn();
 
             String query = "INSERT INTO pembeli" +
                     "(nama_pembeli)" +
