@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class menuInput {
     Scanner input = new Scanner(System.in).useDelimiter("\n");
-    public void inputMenu() throws SQLException, namaKosong {
+    public void inputMenu() throws SQLException, namaKosong, InterruptedException {
         System.out.print("\n Apakah anda ingin memilih menu lagi? (y/n) ");
         String menu = input.next();
         if(menu.equals("y") || menu.equals("Y")){

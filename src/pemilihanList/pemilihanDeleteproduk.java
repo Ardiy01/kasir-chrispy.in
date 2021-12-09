@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class pemilihanDeleteproduk {
-    public void deleteProdukmilih() throws SQLException, namaKosong {
+    public void deleteProdukmilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menghapus produk lagi? (delete/menu/logout) ");
         String menu = input.next();

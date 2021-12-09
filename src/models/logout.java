@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class logout {
-    public void keluar() throws SQLException, namaKosong {
+    public void keluar() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in);
         System.out.print("\nApakah anda yakin ingin menutup system? (y/n): ");
         String out = input.next();

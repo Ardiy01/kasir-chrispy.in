@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class pemiliihanPegawai {
-    public void pegawaiMemilih() throws SQLException, namaKosong {
+    public void pegawaiMemilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menambahkan nama pembeli lagi? (tambah/menu/logout) ");
         String menu = input.next();

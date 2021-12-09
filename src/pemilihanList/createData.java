@@ -4,17 +4,19 @@ import exceptions.namaKosong;
 import menu.create.createPegawai;
 import menu.create.createPembeli;
 import menu.create.createProduk;
+import menu.create.createTransaksi;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class createData {
-    public void dataCreate() throws SQLException, namaKosong {
+    public void dataCreate() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.println("\nList Delete Data");
         System.out.println("1. Menambah Nama Pembeli");
         System.out.println("2. Menambah Nama Pegawai");
         System.out.println("3. Menambah Data Produk");
+        System.out.println("4. Menambah Data Transaksi");
         System.out.println("\n0. Back");
 
         System.out.print("Pilih nomor yang diinginkan : ");
@@ -40,6 +42,11 @@ public class createData {
             produk.produkCreate();
             pemilihanProduk baru = new pemilihanProduk();
             baru.produkMilih();
+        }
+        else if (pilihan == 4){
+//            create transaksi
+            createTransaksi transaksi = new createTransaksi();
+            transaksi.craeteTransaksi();
         }
         else if (pilihan == 0){
             pemilihan menu = new pemilihan();

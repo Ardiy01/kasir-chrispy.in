@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class melihatData {
-    public void dataMelihat() throws SQLException, namaKosong {
+    public void dataMelihat() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.println("\nList Delete Data");
         System.out.println("1. Melihat Nama Pembeli");

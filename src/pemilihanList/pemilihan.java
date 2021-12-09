@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class pemilihan {
-    public void pemilihanMenu() throws SQLException, namaKosong {
+    public void pemilihanMenu() throws SQLException, namaKosong, InterruptedException {
         System.out.println("\nList Menu");
         System.out.println("1. Melihat Data");
         System.out.println("2. Menambah Data");

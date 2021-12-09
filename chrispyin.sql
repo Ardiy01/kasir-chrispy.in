@@ -51,11 +51,11 @@ create table transaksi(
 alter table transaksi add foreign key (id_pegawai) references pegawai(id_pegawai);
 alter table transaksi add foreign key (id_pembeli) references pembeli(id_pembeli);
 
-insert into transaksi (jumlah_produk, tanggal, id_pegawai, id_pembeli, keterangan)
+insert into transaksi (tanggal, id_pegawai, id_pembeli, keterangan)
 values
-    (2, '12 november 2021', 1, 1, 'Meja nomor 4'),
-    (3, '13 november 2021', 2, 2, 'Meja nomor 5'),
-    (5, '14 november 2021', 1, 3, 'Dibawa pulang');
+    ('12 november 2021', 1, 1, 'Meja nomor 4'),
+    ('13 november 2021', 2, 2, 'Meja nomor 5'),
+    ('14 november 2021', 1, 3, 'Dibawa pulang');
 
 create table detail_transaksi(
                                  id_transaksi int null,
@@ -65,8 +65,8 @@ create table detail_transaksi(
 alter table detail_transaksi add  foreign key (id_transaksi) references transaksi(id_transaksi);
 alter table detail_transaksi add foreign key (id_produk) references produk(id_produk);
 
-insert into detail_transaksi (id_transaksi, id_produk, diskon)
+insert into detail_transaksi (id_transaksi, id_produk, jumlah_produk, diskon)
 values
-    (1, 1, 0),
-    (1, 2, 0),
-    (2, 3, 10)
+    (1, 1, 2, 0),
+    (1, 2, 3, 0),
+    (2, 3, 5, 10)

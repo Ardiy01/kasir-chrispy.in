@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class tampilanAwal {
-    public void halamanAwal() throws SQLException, namaKosong {
+    public void halamanAwal() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
 
         System.out.println("============ Chrispy.in ============");
