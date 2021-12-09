@@ -1,9 +1,10 @@
 package pemilihanList;
 
 import exceptions.namaKosong;
+import menu.melihat.melihatDataProduk;
 import menu.melihat.melihatNamapegawai;
 import menu.melihat.melihatNamapem;
-import menu.melihat.melihatProduk;
+import menu.melihat.melihaDataTransaksi;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class melihatData {
         System.out.println("1. Melihat Nama Pembeli");
         System.out.println("2. Melihat Nama Pegawai");
         System.out.println("3. Melihat Data Produk");
+        System.out.println("4. Melihat Data Transaksi");
         System.out.println("\n0. Back");
 
         System.out.print("Pilih nomor yang diinginkan : ");
@@ -36,8 +38,15 @@ public class melihatData {
         }
         else if (pilihan == 3){
             //melihat produk
-            melihatProduk baru = new melihatProduk();
-            baru.produkLihat();
+            melihatDataProduk produk = new melihatDataProduk();
+            produk.produkLihat();
+            menuInput pilihInput = new menuInput();
+            pilihInput.inputMenu();
+        }
+        else if (pilihan == 4){
+            //melihat transaksi
+            melihaDataTransaksi transaksi = new melihaDataTransaksi();
+            transaksi.melihatTransaksi();
             menuInput pilihInput = new menuInput();
             pilihInput.inputMenu();
         }

@@ -2,25 +2,32 @@ package menu.create;
 
 import exceptions.namaKosong;
 import models.pembeliModel;
-import views.pembeliView;
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class createPembeli {
+public class createPembeli extends pembeliModel {
+    pembeliModel addPembeli = new pembeliModel();
+    private String namaPembeli;
+
+    public void setNamaPembeli(String namaPembeli) {
+        this.namaPembeli = namaPembeli;
+    }
+
+    public String getNamaPembeli() {
+        return namaPembeli;
+    }
+
     public void pembeliCreate() throws namaKosong, SQLException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
-        pembeliView pembeli = new pembeliView();
         System.out.print("Nama Pembeli: ");
         String namaPembeli = input.next();
 
         if(namaPembeli.isEmpty()){
             throw new namaKosong();
-        }
-            else{
-            pembeli.tambahPembeli(namaPembeli);
-            pembeliModel pembelimodel = new pembeliModel();
-            pembelimodel.tambahPembeli(pembeli.getNama());
+        } else{
+            setNamaPembeli(namaPembeli);
+            addPembeli.tambahPembeli(getNamaPembeli());
         }
     }
 }

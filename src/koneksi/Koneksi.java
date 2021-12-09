@@ -12,7 +12,7 @@ public class Koneksi {
             try {
                 String url = "jdbc:postgresql://localhost/chrispyin";
                 String username = "postgres";
-                String password = "ayani123";
+                String password = "admin";
                 connection = DriverManager.getConnection(url, username, password);
             } catch (SQLException e){
                 System.out.println("Koneksi gagal");

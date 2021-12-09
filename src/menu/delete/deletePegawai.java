@@ -1,27 +1,26 @@
 package menu.delete;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
+import menu.melihat.melihatNamapegawai;
+import models.pegawaiModel;
 
-public class deletePegawai {
-    public void pegawaiDelete(){
-        Scanner input = new Scanner(System.in).useDelimiter("\n");
-        try {
-            Connection connection = koneksi.Koneksi.getConn();
+public class deletePegawai extends pegawaiModel{
+    pegawaiModel deletePegawai = new pegawaiModel();
+    public void pegawaiDelete() throws SQLException {
+        Scanner input = new Scanner(System.in);
+        melihatNamapegawai dataPegawai = new melihatNamapegawai();
+        dataPegawai.pegawaiNama();
+        System.out.print("Masukan ID Pegawai yang ingin dihapus: ");
+        int idPegawai = input.nextInt();
 
-            System.out.print("Masukkan ID Pegawai yang ingin dihapus: ");
-            int idPegawai = input.nextInt();
-            String query = "DELETE FROM pegawai WHERE id_pegawai =" + idPegawai+";";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.executeUpdate();
-
-            System.out.println("Delete Berhasil");
-        } catch ( Exception e ) {
-
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-
-            System.exit(0);
+        if (idPegawai <= 0){
+            System.out.println("ID Pegawai Salah");
+        } else{
+            System.out.print("\nNama Pegawai ");
+            deletePegawai.getDataPegawai(idPegawai);
+            System.out.print(" Berhasil Dihapus\n");
+            deletePegawai.hapusPegawai(idPegawai);
         }
-    }
+   }
 }

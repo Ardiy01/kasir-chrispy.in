@@ -1,6 +1,5 @@
 import exceptions.namaKosong;
 import home.tampilanAwal;
-import pemilihanList.pemilihan;
 
 import java.sql.*;
 
