@@ -75,4 +75,19 @@ public class pegawaiModel implements pegawaiController {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void updatePegawai(int idPegawai, String namaPegawai) throws SQLException {
+        try{
+            Connection connection = Koneksi.getConn();
+            String query = "UPDATE pegawai SET nama_pegawai = ? WHERE id_pegawai = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, namaPegawai);
+            preparedStatement.setInt(2, idPegawai);
+            preparedStatement.executeUpdate();
+            System.out.println("Data Pegawai Berhasil Di Update");
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

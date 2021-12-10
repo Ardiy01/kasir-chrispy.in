@@ -6,7 +6,7 @@ import menu.melihat.melihaDataTransaksi;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class deleteTransaksi extends transaksiModel {
+public class deleteTransaksi{
     transaksiModel deleteTransaksi = new transaksiModel();
     public void deleteTransaksi() throws SQLException {
         melihaDataTransaksi lihatTransaksi = new melihaDataTransaksi();

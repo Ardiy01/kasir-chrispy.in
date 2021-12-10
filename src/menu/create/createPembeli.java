@@ -6,7 +6,7 @@ import models.pembeliModel;
 import java.sql.*;
 import java.util.Scanner;
 
-public class createPembeli extends pembeliModel {
+public class createPembeli{
     pembeliModel addPembeli = new pembeliModel();
     private String namaPembeli;
 

@@ -6,7 +6,7 @@ import models.pegawaiModel;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class createPegawai {
+public class createPegawai extends pegawaiModel{
     pegawaiModel addPegawai = new pegawaiModel();
     private String namaPegawai;
 

@@ -82,4 +82,22 @@ public class produkModel implements produkController {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void updateProduk(int idProduk, String namaProduk, int harga, String keterangan) throws SQLException {
+        try{
+            Connection connection = Koneksi.getConn();
+            String query = "UPDATE produk SET nama_produk = ?, harga = ?, keterangan = ? WHERE id_produk = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, namaProduk);
+            preparedStatement.setInt(2, harga);
+            preparedStatement.setString(3, keterangan);
+            preparedStatement.setInt(4, idProduk);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Data Produk Berhasil Di Update");
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

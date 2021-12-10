@@ -4,10 +4,7 @@ import cotrollers.transaksiController;
 import koneksi.Koneksi;
 import menu.create.createTransaksi;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class transaksiModel implements transaksiController {
 
@@ -87,22 +84,28 @@ public class transaksiModel implements transaksiController {
     }
 
     @Override
-    public void getIdTransaksi() throws SQLException, InterruptedException {
+    public int getIdTransaksi() throws SQLException, InterruptedException {
+        int id_transaksi = 0;
+        createTransaksi idTransaksi = new createTransaksi();
         try {
-            createTransaksi idTransaksi = new createTransaksi();
             Connection connection = Koneksi.getConn();
-            String query = "SELECT COUNT(*) as id_transaksi FROM transaksi";
+            String query = "SELECT MAX(id_transaksi) as id_transaksi FROM transaksi";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int count = rs.getInt("id_transaksi");
-                idTransaksi.setIdTransaksi(count);
                 System.out.println(count);
-
+                id_transaksi += count;
+                if (id_transaksi >= 0){
+                    return id_transaksi;
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(id_transaksi);
+        return id_transaksi;
+
     }
 
     @Override
@@ -120,7 +123,6 @@ public class transaksiModel implements transaksiController {
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
-
     }
 
 }

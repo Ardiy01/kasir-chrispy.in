@@ -5,7 +5,7 @@ import models.transaksiModel;
 
 import java.sql.SQLException;
 
-public class melihaDataTransaksi extends transaksiModel{
+public class melihaDataTransaksi{
 
     transaksiModel lihatTransaksi = new transaksiModel();
     public void melihatTransaksi() throws SQLException {

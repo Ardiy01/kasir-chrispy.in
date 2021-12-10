@@ -5,7 +5,7 @@ import menu.melihat.melihatNamapem;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class deletePembeli extends pembeliModel{
+public class deletePembeli{
     pembeliModel deletePembeli = new pembeliModel();
     public void pembeliDelete() throws SQLException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");

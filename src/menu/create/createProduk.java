@@ -5,7 +5,7 @@ import models.produkModel;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class createProduk {
+public class createProduk extends produkModel{
     produkModel addProduk = new produkModel();
     private String namaProduk;
     private int hargaProduk;

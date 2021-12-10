@@ -12,6 +12,7 @@ public class pemilihan {
         System.out.println("1. Melihat Data");
         System.out.println("2. Menambah Data");
         System.out.println("3. Menghapus Data");
+        System.out.println("4. Mengupdate Data");
 
         System.out.print("\nPilih nomor yang diinginkan: ");
         Scanner input = new Scanner(System.in).useDelimiter("\n");
@@ -32,6 +33,12 @@ public class pemilihan {
         else if (Pilihan == 3){
             pemilihanDelete delete = new pemilihanDelete();
             delete.deleteMilih();
+        }
+
+        else if (Pilihan == 4){
+            updateData update = new updateData();
+            update.dataUpdate();
+
         }
     }
 }
