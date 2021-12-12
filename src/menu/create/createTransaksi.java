@@ -77,32 +77,26 @@ public class createTransaksi extends transaksiModel{
     public void struk() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in);
         System.out.println("\n\n");
-        System.out.println("\t\t\t\t ======== STRUK PEMBELIAN ========");
+        System.out.println("============== STRUK PEMBELIAN ==============");
         transaksiModel struk = new transaksiModel();
         struk.detailPembeli();
         System.out.println();
         struk.detailPesanana();
-        System.out.println("\n=======================================");
+        System.out.println("\n============================================");
         struk.subTotal();
         System.out.print("Bayar\t\t: Rp. ");
         int bayar = input.nextInt();
         struk.kembalian(bayar);
-        input.nextLine();
-        System.out.print("\nTekan Enter Untuk Kembali Ke Menu....");
-        String enter = input.nextLine();
-        if (enter.isEmpty()){
-            System.out.println("\n\n\n\n");
-            pemilihan menu = new pemilihan();
-            menu.pemilihanMenu();
-        }
     }
 
 
     public void craeteTransaksi() throws SQLException, namaKosong, InterruptedException {
+        System.out.println("Tambah Pesanan\n");
         boolean tambahPesanan = true;
         String pesanan;
         Scanner input = new Scanner(System.in);
         setTransaksi();
+        System.out.println();
         setDetailTransaksi();
         createTransaksi.tambahTransaksi(getIdPegawai(), getIdPembeli(), getKeterangan());
         createTransaksi.tambahDetailTransaksi(getIdProduk(), getJmlProduk(), getDiskon());

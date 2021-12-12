@@ -138,7 +138,7 @@ public class transaksiModel implements transaksiController {
                 int diskon = rs.getInt("diskon");
                 i++;
                 System.out.println( i + ". " + namaProduk);
-                System.out.println("\tHarga: Rp. " + harga + " X " + jumlah_produk + "\tDiskon: " + diskon);
+                System.out.println("\tHarga: Rp. " + harga + " X " + jumlah_produk + "\tDiskon: " + diskon + "%");
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -152,7 +152,7 @@ public class transaksiModel implements transaksiController {
             String query = "SELECT SUM((dt.jumlah_produk * p.harga - " +
                     "(dt.jumlah_produk * p.harga * (dt.diskon / 100)))) AS total " +
                     "FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n" +
-                    "WHERE dt.id_transaksi = 1\n" +
+                    "WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi)\n" +
                     "GROUP BY (dt.id_transaksi)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -174,7 +174,7 @@ public class transaksiModel implements transaksiController {
             String query = "SELECT (? - SUM((dt.jumlah_produk * p.harga - " +
                     " (dt.jumlah_produk * p.harga * (dt.diskon / 100))))) AS kembalian " +
                     " FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n"+
-                    " WHERE dt.id_transaksi = 1 \n" +
+                    " WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi) \n" +
                     " GROUP BY (dt.id_transaksi)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, bayar);

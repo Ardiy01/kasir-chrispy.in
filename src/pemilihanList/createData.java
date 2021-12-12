@@ -24,6 +24,7 @@ public class createData {
 
         if(pilihan == 1){
             // nama pembeli
+            System.out.println("\n\n");
             createPembeli pembeli = new createPembeli();
             pembeli.pembeliCreate();
             pemilihanPembeli baru = new pemilihanPembeli();
@@ -31,6 +32,7 @@ public class createData {
         }
         else if (pilihan == 2){
             // nama pegawai
+            System.out.println("\n\n");
             createPegawai pegawai = new createPegawai();
             pegawai.pegawaiCreate();
             pemiliihanPegawai baru = new pemiliihanPegawai();
@@ -38,6 +40,7 @@ public class createData {
         }
         else if (pilihan == 3){
             //melihat produk
+            System.out.println("\n\n");
             createProduk produk = new createProduk();
             produk.produkCreate();
             pemilihanProduk baru = new pemilihanProduk();
@@ -45,12 +48,17 @@ public class createData {
         }
         else if (pilihan == 4){
 //            create transaksi
+            System.out.println("\n\n");
             createTransaksi transaksi = new createTransaksi();
             transaksi.craeteTransaksi();
+
+            addTransaksi trans = new addTransaksi();
+            trans.tambahTransaksi();
         }
         else if (pilihan == 0){
             pemilihan menu = new pemilihan();
             menu.pemilihanMenu();
+
         }
         else{
             System.out.println("\nSystem eror. Pilhan yang dipilih tidak tersedia. Silahkan memasukkan pilihan yang sesuai.");

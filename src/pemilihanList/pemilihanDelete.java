@@ -51,6 +51,9 @@ public class pemilihanDelete {
             deleteTransaksi delet = new deleteTransaksi();
             delet.deleteTransaksi();
 
+            pemilihanDeleteTransaksi trs = new pemilihanDeleteTransaksi();
+            trs.deleteTransaksi();
+
 
         }
         else if (pilihan == 0){

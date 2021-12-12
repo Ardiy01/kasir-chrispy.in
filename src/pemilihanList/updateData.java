@@ -31,7 +31,7 @@ public class updateData {
         }
 
         else if (pilihan == 2){
-            // data pegawai
+            // data produk
             updateProduk upProduk = new updateProduk();
             upProduk.upProduk();
             pemilihanProduk update = new pemilihanProduk();
