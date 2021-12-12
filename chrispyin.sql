@@ -42,7 +42,6 @@ values
 
 create table transaksi(
                           id_transaksi serial primary key ,
-                          jumlah_produk int not null ,
                           tanggal date not null ,
                           id_pegawai int null ,
                           id_pembeli int null ,
@@ -60,6 +59,7 @@ values
 create table detail_transaksi(
                                  id_transaksi int null,
                                  id_produk int null ,
+                                 jumlah_produk int not null ,
                                  diskon float
 );
 alter table detail_transaksi add  foreign key (id_transaksi) references transaksi(id_transaksi);
