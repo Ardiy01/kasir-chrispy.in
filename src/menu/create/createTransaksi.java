@@ -1,23 +1,18 @@
 package menu.create;
 
+import exceptions.namaKosong;
 import models.transaksiModel;
+import pemilihanList.pemilihan;
 
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class createTransaksi extends transaksiModel{
     transaksiModel createTransaksi = new transaksiModel();
-    private int idTransaksiP, idPegawai, idPembeli, idProduk,  jmlProduk;
+    private int idPegawai, idPembeli, idProduk,  jmlProduk;
     private String keterangan;
     private float diskon;
-
-    public void setIdTransaksiP(int idTransaksi) {
-        this.idTransaksiP = idTransaksi;
-    }
-
-    public int getIdTransaksiP() {
-        return this.idTransaksiP;
-    }
 
     public void setTransaksi(int newIdPegawai, int newIdPembeli, String newKeterangan){
         this.idPegawai = newIdPegawai;
@@ -56,35 +51,73 @@ public class createTransaksi extends transaksiModel{
         return keterangan;
     }
 
-
-    public void craeteTransaksi() throws SQLException, InterruptedException {
+    public void setTransaksi() throws SQLException {
         Scanner input = new Scanner(System.in);
         System.out.print("Masukan ID Pegawai: ");
         int idPegawai = input.nextInt();
         System.out.print("Masukan ID Pembeli: ");
         int idPembeli = input.nextInt();
+        System.out.print("Keterangan: ");
+        String keterangan = input.nextLine();
+        input.nextLine();
+        setTransaksi(idPegawai, idPembeli, keterangan);
+    }
+
+    public void setDetailTransaksi() throws SQLException {
+        Scanner input = new Scanner(System.in);
         System.out.print("Masukan ID Produk: ");
         int idProduk = input.nextInt();
         System.out.print("Masukan Jumlah Produk: ");
         int jmlProduk = input.nextInt();
         System.out.print("Masukan Diskon: ");
         float diskon = input.nextFloat();
+        setDetailTransaksi(idProduk, jmlProduk, diskon);
+    }
+
+    public void struk() throws SQLException, namaKosong, InterruptedException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n");
+        System.out.println("\t\t\t\t ======== STRUK PEMBELIAN ========");
+        transaksiModel struk = new transaksiModel();
+        struk.detailPembeli();
+        System.out.println();
+        struk.detailPesanana();
+        System.out.println("\n=======================================");
+        struk.subTotal();
+        System.out.print("Bayar\t\t: Rp. ");
+        int bayar = input.nextInt();
+        struk.kembalian(bayar);
         input.nextLine();
-        System.out.print("Keterangan: ");
-        String keterangan = input.nextLine();
-        setTransaksi(idPegawai, idPembeli, keterangan);
-        setDetailTransaksi(idProduk, getJmlProduk(), getDiskon());
-
-        if (keterangan.isEmpty()){
-            System.out.println("Data Tidak Boleh Kosong");
-        } else {
-            createTransaksi.tambahTransaksi(getIdPegawai(), getIdPembeli(), getKeterangan());
-//            createTransaksi.tambahDetailTransaksi(getIdTransaksi(), idProduk, jmlProduk, diskon);
-            createTransaksi.getIdTransaksi();
-            System.out.println(getIdTransaksiP());
-
-            System.out.println("Data Transaksi Berhasil Ditambahkan");
+        System.out.print("\nTekan Enter Untuk Kembali Ke Menu....");
+        String enter = input.nextLine();
+        if (enter.isEmpty()){
+            System.out.println("\n\n\n\n");
+            pemilihan menu = new pemilihan();
+            menu.pemilihanMenu();
         }
+    }
+
+
+    public void craeteTransaksi() throws SQLException, namaKosong, InterruptedException {
+        boolean tambahPesanan = true;
+        String pesanan;
+        Scanner input = new Scanner(System.in);
+        setTransaksi();
+        setDetailTransaksi();
+        createTransaksi.tambahTransaksi(getIdPegawai(), getIdPembeli(), getKeterangan());
+        createTransaksi.tambahDetailTransaksi(getIdProduk(), getJmlProduk(), getDiskon());
+
+        while (tambahPesanan){
+            System.out.print("Tambah Pesanan (Y/N): ");
+            pesanan = input.nextLine();
+            if (pesanan.equalsIgnoreCase("n")){
+                break;
+            }
+            System.out.println();
+            setDetailTransaksi();
+            createTransaksi.tambahDetailTransaksi(getIdProduk(), getJmlProduk(), getDiskon());
+        }
+        struk();
 
     }
 }

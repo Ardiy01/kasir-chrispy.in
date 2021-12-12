@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class pemilihanPembeli {
     public void pembeliMilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
-        System.out.print("\nApakah anda ingin menambahkan nama pembeli lagi? (tambah/menu/logout) ");
+        System.out.print("\nApakah anda ingin menambahkan pembeli lagi? (tambah/menu/logout) ");
         String menu = input.next();
 
         if(menu.equals("tambah") || menu.equals("Tambah")){

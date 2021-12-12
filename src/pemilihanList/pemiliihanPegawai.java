@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class pemiliihanPegawai {
     public void pegawaiMemilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
-        System.out.print("\nApakah anda ingin menambahkan nama pembeli lagi? (tambah/menu/update/logout) ");
+        System.out.print("\nApakah anda ingin menambahkan pegawai lagi? (tambah/menu/update/logout) ");
         String menu = input.next();
 
         if(menu.equals("tambah") || menu.equals("Tambah")){

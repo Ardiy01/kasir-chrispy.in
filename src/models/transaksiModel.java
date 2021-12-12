@@ -2,7 +2,6 @@ package models;
 
 import cotrollers.transaksiController;
 import koneksi.Koneksi;
-import menu.create.createTransaksi;
 
 import java.sql.*;
 
@@ -84,45 +83,111 @@ public class transaksiModel implements transaksiController {
     }
 
     @Override
-    public int getIdTransaksi() throws SQLException, InterruptedException {
-        int id_transaksi = 0;
-        createTransaksi idTransaksi = new createTransaksi();
-        try {
-            Connection connection = Koneksi.getConn();
-            String query = "SELECT MAX(id_transaksi) as id_transaksi FROM transaksi";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int count = rs.getInt("id_transaksi");
-                System.out.println(count);
-                id_transaksi += count;
-                if (id_transaksi >= 0){
-                    return id_transaksi;
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        System.out.println(id_transaksi);
-        return id_transaksi;
-
-    }
-
-    @Override
-    public void tambahDetailTransaksi(int idTransaksi, int idProduk, int jmlProduk, float diskon) throws SQLException {
+    public void tambahDetailTransaksi(int idProduk, int jmlProduk, float diskon) throws SQLException {
         try{
             Connection connection = Koneksi.getConn();
             String query = "INSERT INTO detail_transaksi(id_transaksi, id_produk, jumlah_produk, diskon)" +
-                    "VALUES ?, ?, ?, ?";
+                    "VALUES ((SELECT MAX(id_transaksi) FROM transaksi), ?, ?, ?);";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idTransaksi);
-            preparedStatement.setInt(2, idProduk);
-            preparedStatement.setInt(3, jmlProduk);
-            preparedStatement.setFloat(4, diskon);
+            preparedStatement.setInt(1, idProduk);
+            preparedStatement.setInt(2, jmlProduk);
+            preparedStatement.setFloat(3, diskon);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void detailPembeli() throws SQLException {
+        try {
+            Connection connection = Koneksi.getConn();
+            String query = "SELECT TO_CHAR(t.tanggal::DATE, 'dd-mm-yyyy') AS tanggal, p.nama_pembeli AS nama_pembeli " +
+                    "FROM transaksi t JOIN pembeli p ON (t.id_pembeli = p.id_pembeli) " +
+                    "WHERE t.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String tanggal = rs.getString("tanggal");
+                String namaPembeli = rs.getString("nama_pembeli");
+                System.out.println("\nTanggal\t\t\t: " + tanggal);
+                System.out.println("Nama Pembeli\t: " + namaPembeli);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void detailPesanana() throws SQLException {
+        try {
+            Connection connection = Koneksi.getConn();
+            String query = "SELECT pr.nama_produk AS nama_produk, pr.harga AS harga, dt.jumlah_produk AS jumlah_produk, " +
+                    "dt.diskon AS diskon FROM transaksi t join pembeli p ON t.id_pembeli = p.id_pembeli\n" +
+                    "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi\n" +
+                    "JOIN produk pr ON dt.id_produk = pr.id_produk\n" +
+                    "WHERE t.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi);";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            int i = 0;
+            while (rs.next()){
+                String namaProduk = rs.getString("nama_produk");
+                int harga = rs.getInt("harga");
+                int jumlah_produk = rs.getInt("jumlah_produk");
+                int diskon = rs.getInt("diskon");
+                i++;
+                System.out.println( i + ". " + namaProduk);
+                System.out.println("\tHarga: Rp. " + harga + " X " + jumlah_produk + "\tDiskon: " + diskon);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void subTotal() throws SQLException {
+        try {
+            Connection connection = Koneksi.getConn();
+            String query = "SELECT SUM((dt.jumlah_produk * p.harga - " +
+                    "(dt.jumlah_produk * p.harga * (dt.diskon / 100)))) AS total " +
+                    "FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n" +
+                    "WHERE dt.id_transaksi = 1\n" +
+                    "GROUP BY (dt.id_transaksi)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                int totalBayar = rs.getInt("total");
+                System.out.println("Total\t\t: Rp. " + totalBayar);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void kembalian(int bayar) throws SQLException {
+        try{
+            Connection connection = Koneksi.getConn();
+            String query = "SELECT (? - SUM((dt.jumlah_produk * p.harga - " +
+                    " (dt.jumlah_produk * p.harga * (dt.diskon / 100))))) AS kembalian " +
+                    " FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n"+
+                    " WHERE dt.id_transaksi = 1 \n" +
+                    " GROUP BY (dt.id_transaksi)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, bayar);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()){
+                int kembalian = rs.getInt("kembalian");
+                System.out.println("Kembalian\t: Rp. " + kembalian);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }

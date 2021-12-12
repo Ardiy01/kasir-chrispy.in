@@ -1,6 +1,7 @@
 package pemilihanList;
 
 import exceptions.namaKosong;
+import models.logout;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class pemilihan {
         System.out.println("2. Menambah Data");
         System.out.println("3. Menghapus Data");
         System.out.println("4. Mengupdate Data");
+        System.out.println("0. Logout");
 
         System.out.print("\nPilih nomor yang diinginkan: ");
         Scanner input = new Scanner(System.in).useDelimiter("\n");
@@ -39,6 +41,9 @@ public class pemilihan {
             updateData update = new updateData();
             update.dataUpdate();
 
+        } else if (Pilihan == 0) {
+            logout log = new logout();
+            log.keluar();
         }
     }
 }
