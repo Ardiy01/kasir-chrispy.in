@@ -1,12 +1,16 @@
 package pemilihanList;
 
 import exceptions.namaKosong;
+import menu.melihat.melihaDataTransaksi;
+import menu.melihat.melihatDataProduk;
+import menu.melihat.melihatNamapegawai;
+import menu.melihat.melihatNamapem;
 import models.logout;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class menuInput {
+public class menuInput extends melihatNamapem {
     Scanner input = new Scanner(System.in).useDelimiter("\n");
     public void inputMenu() throws SQLException, namaKosong, InterruptedException {
         System.out.print("\n Apakah anda ingin memilih menu lagi? (y/n) ");

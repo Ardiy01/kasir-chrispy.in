@@ -11,8 +11,8 @@ import menu.update.updateProduk;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class updateData {
-    public void dataUpdate() throws SQLException, namaKosong, InterruptedException {
+public class updateData extends updatePegawai {
+    public void dataUpdate() throws SQLException, InterruptedException, namaKosong {
         Scanner input = new Scanner(System.in);
         System.out.println("\nList Update Data");
         System.out.println("1. Update Nama Pegawai");

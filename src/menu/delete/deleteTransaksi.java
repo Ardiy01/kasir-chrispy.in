@@ -2,11 +2,12 @@ package menu.delete;
 
 import models.transaksiModel;
 import menu.melihat.melihaDataTransaksi;
+import pemilihanList.pemilihanDelete;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class deleteTransaksi{
+public class deleteTransaksi extends transaksiModel {
     transaksiModel deleteTransaksi = new transaksiModel();
     public void deleteTransaksi() throws SQLException {
         melihaDataTransaksi lihatTransaksi = new melihaDataTransaksi();

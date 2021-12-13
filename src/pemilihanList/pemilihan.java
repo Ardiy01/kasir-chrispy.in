@@ -1,13 +1,14 @@
 package pemilihanList;
 
 import exceptions.namaKosong;
+import home.tampilanAwal;
 import models.logout;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 
-public class pemilihan {
+public class pemilihan extends tampilanAwal {
     public void pemilihanMenu() throws SQLException, namaKosong, InterruptedException {
         System.out.println("\nList Menu");
         System.out.println("1. Melihat Data");

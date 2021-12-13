@@ -9,7 +9,7 @@ import menu.create.createTransaksi;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class createData {
+public class createData extends createPembeli {
     public void dataCreate() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.println("\nList Delete Data");

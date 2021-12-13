@@ -5,7 +5,7 @@ import java.util.Scanner;
 import menu.melihat.melihatNamapegawai;
 import models.pegawaiModel;
 
-public class deletePegawai{
+public class deletePegawai extends pegawaiModel {
     pegawaiModel deletePegawai = new pegawaiModel();
     public void pegawaiDelete() throws SQLException {
         Scanner input = new Scanner(System.in);

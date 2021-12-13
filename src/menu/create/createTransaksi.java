@@ -1,14 +1,14 @@
 package menu.create;
 
 import exceptions.namaKosong;
+import menu.melihat.melihaDataTransaksi;
+import models.produkModel;
 import models.transaksiModel;
-import pemilihanList.pemilihan;
 
 import java.sql.SQLException;
-import java.util.Locale;
 import java.util.Scanner;
 
-public class createTransaksi extends transaksiModel{
+public class createTransaksi extends transaksiModel {
     transaksiModel createTransaksi = new transaksiModel();
     private int idPegawai, idPembeli, idProduk,  jmlProduk;
     private String keterangan;
@@ -64,6 +64,12 @@ public class createTransaksi extends transaksiModel{
     }
 
     public void setDetailTransaksi() throws SQLException {
+        produkModel produk = new produkModel();
+        System.out.println("===============================================");
+        System.out.println("ID Produk \t    Nama Produk \t\t Harga");
+        System.out.println("===============================================");
+        produk.produkTransaksi();
+        System.out.println("-----------------------------------------------");
         Scanner input = new Scanner(System.in);
         System.out.print("Masukan ID Produk: ");
         int idProduk = input.nextInt();

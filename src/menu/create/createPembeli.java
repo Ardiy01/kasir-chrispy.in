@@ -6,8 +6,7 @@ import models.pembeliModel;
 import java.sql.*;
 import java.util.Scanner;
 
-public class createPembeli{
-    pembeliModel addPembeli = new pembeliModel();
+public class createPembeli extends pembeliModel{
     private String namaPembeli;
 
     public void setNamaPembeli(String namaPembeli) {
@@ -27,7 +26,7 @@ public class createPembeli{
             throw new namaKosong();
         } else{
             setNamaPembeli(namaPembeli);
-            addPembeli.tambahPembeli(getNamaPembeli());
+            tambahPembeli(getNamaPembeli());
         }
     }
 }

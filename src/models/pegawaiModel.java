@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class pegawaiModel implements pegawaiController {
+public class pegawaiModel extends Koneksi implements pegawaiController {
     @Override
     public void tambahPegawai(String namaPegawai) throws SQLException {
         try {

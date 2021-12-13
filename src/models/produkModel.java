@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class produkModel implements produkController {
+public class produkModel extends Koneksi implements produkController {
     @Override
     public void tambahProduk(String namaProduk, int harga, String keterangan) throws SQLException {
         try {
@@ -96,6 +96,27 @@ public class produkModel implements produkController {
 
             preparedStatement.executeUpdate();
             System.out.println("Data Produk Berhasil Di Update");
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void produkTransaksi() throws SQLException {
+        try {
+            Connection connection = Koneksi.getConn();
+            String query = "SELECT id_produk, nama_produk, harga FROM produk";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                int idProduk = rs.getInt("id_produk");
+                String namaProduk = rs.getString("nama_produk");
+                int hargaProduk = rs.getInt("harga");
+
+                System.out.print("\t" + idProduk + "\t\t\t" + namaProduk + "\t\t\t");
+                System.out.print("Rp. "+ hargaProduk + "\n");
+            }
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }

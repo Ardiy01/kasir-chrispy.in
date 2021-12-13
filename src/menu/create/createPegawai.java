@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class createPegawai extends pegawaiModel{
-    pegawaiModel addPegawai = new pegawaiModel();
     private String namaPegawai;
 
     public void setNamaPegawai(String namaPembeli) {
@@ -28,8 +27,7 @@ public class createPegawai extends pegawaiModel{
         }
         else{
             setNamaPegawai(namaPegawai);
-
-            addPegawai.tambahPegawai(getNamaPegawai());
+            tambahPegawai(getNamaPegawai());
         }
     }
 }

@@ -2,11 +2,12 @@ package models;
 
 import exceptions.namaKosong;
 import pemilihanList.menuInput;
+import pemilihanList.pemilihan;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class logout {
+public class logout extends pemilihan {
     public void keluar() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in);
         System.out.print("\nApakah anda yakin ingin menutup system? (y/n): ");

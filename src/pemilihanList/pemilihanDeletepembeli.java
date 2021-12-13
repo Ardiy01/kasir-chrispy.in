@@ -8,7 +8,7 @@ import models.logout;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class pemilihanDeletepembeli {
+public class pemilihanDeletepembeli extends pemilihanDelete {
     public void deletePembelimilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menghapus pembeli lagi? (delete/menu/logout) ");

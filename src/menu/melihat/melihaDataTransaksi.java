@@ -1,11 +1,12 @@
 package menu.melihat;
 
+import cotrollers.transaksiController;
 import models.transaksiModel;
 
 
 import java.sql.SQLException;
 
-public class melihaDataTransaksi{
+public class melihaDataTransaksi extends transaksiModel {
 
     transaksiModel lihatTransaksi = new transaksiModel();
     public void melihatTransaksi() throws SQLException {

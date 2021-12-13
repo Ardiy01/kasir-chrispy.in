@@ -7,7 +7,7 @@ import models.logout;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class pemilihanPembeli {
+public class pemilihanPembeli extends createData {
     public void pembeliMilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menambahkan pembeli lagi? (tambah/menu/logout) ");

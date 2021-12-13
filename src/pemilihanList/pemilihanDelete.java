@@ -9,7 +9,7 @@ import menu.delete.deleteTransaksi;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class pemilihanDelete {
+public class pemilihanDelete extends deletePegawai {
     public void deleteMilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.println("\nList Delete Data");

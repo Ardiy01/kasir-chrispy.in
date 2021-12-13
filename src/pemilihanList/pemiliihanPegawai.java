@@ -8,7 +8,7 @@ import models.logout;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class pemiliihanPegawai {
+public class pemiliihanPegawai extends createData {
     public void pegawaiMemilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menambahkan pegawai lagi? (tambah/menu/update/logout) ");

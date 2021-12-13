@@ -9,7 +9,7 @@ create table produk(
 
 insert into produk(nama_produk, harga, keterangan)
 values
-    ('Ayama Sayap', 5000, 'Ayam bagian sayap'),
+    ('Ayam Sayap', 5000, 'Ayam bagian sayap'),
     ('Ayam Paha', 6000, 'Ayam bagain paha'),
     ('Ayam Dada', 6500, 'Ayam bagian dada'),
     ('Es Small', 5000, 'Es ukuran gelas small'),
@@ -68,5 +68,5 @@ alter table detail_transaksi add foreign key (id_produk) references produk(id_pr
 insert into detail_transaksi (id_transaksi, id_produk, jumlah_produk, diskon)
 values
     (1, 1, 2, 0),
-    (1, 2, 3, 0),
-    (2, 3, 5, 10)
+    (2, 2, 3, 0),
+    (3, 3, 5, 10)

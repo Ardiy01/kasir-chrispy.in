@@ -2,11 +2,12 @@ package menu.update;
 
 import menu.melihat.melihatDataProduk;
 import models.produkModel;
+import pemilihanList.updateData;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class updateProduk {
+public class updateProduk extends produkModel {
     public void upProduk() throws SQLException {
         Scanner input = new Scanner(System.in);
         melihatDataProduk lihatProduk = new melihatDataProduk();

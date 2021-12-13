@@ -5,7 +5,7 @@ import koneksi.Koneksi;
 
 import java.sql.*;
 
-public class transaksiModel implements transaksiController {
+public class transaksiModel extends Koneksi implements transaksiController {
 
     @Override
     public void lihatTransaksi() throws SQLException {
@@ -151,9 +151,9 @@ public class transaksiModel implements transaksiController {
             Connection connection = Koneksi.getConn();
             String query = "SELECT SUM((dt.jumlah_produk * p.harga - " +
                     "(dt.jumlah_produk * p.harga * (dt.diskon / 100)))) AS total " +
-                    "FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n" +
-                    "WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi)\n" +
-                    "GROUP BY (dt.id_transaksi)";
+                    "FROM detail_transaksi dt JOIN produk p ON dt.id_produk = p. id_produk\n" +
+                    "WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi)\n";
+//                    "GROUP BY (dt.id_transaksi)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -173,9 +173,9 @@ public class transaksiModel implements transaksiController {
             Connection connection = Koneksi.getConn();
             String query = "SELECT (? - SUM((dt.jumlah_produk * p.harga - " +
                     " (dt.jumlah_produk * p.harga * (dt.diskon / 100))))) AS kembalian " +
-                    " FROM detail_transaksi dt LEFT JOIN produk p USING(id_produk)\n"+
-                    " WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi) \n" +
-                    " GROUP BY (dt.id_transaksi)";
+                    " FROM detail_transaksi dt JOIN produk p ON dt.id_produk = p.id_produk\n"+
+                    " WHERE dt.id_transaksi = (SELECT MAX(id_transaksi) FROM transaksi)";
+//                    " GROUP BY (dt.id_transaksi)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, bayar);
             ResultSet rs = preparedStatement.executeQuery();

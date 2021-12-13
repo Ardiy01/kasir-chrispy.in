@@ -9,7 +9,7 @@ import models.logout;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class pemilihanProduk {
+public class pemilihanProduk extends createData {
     public void produkMilih() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nApakah anda ingin menambahkan produk lagi? (tambah/menu/update/logout) ");

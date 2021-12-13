@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class pembeliModel implements pembeliController {
+public class pembeliModel extends Koneksi implements pembeliController {
     @Override
     public void tambahPembeli(String namaPembeli) throws SQLException {
         try {

@@ -7,7 +7,7 @@ import models.produkModel;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class deleteProduk{
+public class deleteProduk extends produkModel {
     produkModel deleteProduk = new produkModel();
     public void produkDelete() throws SQLException {
         melihatDataProduk lihatProduk = new melihatDataProduk();

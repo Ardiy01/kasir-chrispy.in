@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class createProduk extends produkModel{
-    produkModel addProduk = new produkModel();
     private String namaProduk;
     private int hargaProduk;
     private String keterangan;
@@ -41,7 +40,7 @@ public class createProduk extends produkModel{
             System.out.println("Data Salah");
         } else{
             setProduk(namaProduk, harga, keterangan);
-            addProduk.tambahProduk(getNamaProduk(), getHargaProduk(), getKeterangan());
+            tambahProduk(getNamaProduk(), getHargaProduk(), getKeterangan());
         }
     }
 }

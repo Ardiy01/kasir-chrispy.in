@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class addTransaksi {
+public class addTransaksi extends createData {
     public void tambahTransaksi() throws SQLException, namaKosong, InterruptedException {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.print("\nAda Transaksi Lagi ? (Y/N): ");

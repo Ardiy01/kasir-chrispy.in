@@ -6,7 +6,7 @@ import models.pegawaiModel;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class updatePegawai{
+public class updatePegawai extends pegawaiModel {
     pegawaiModel updatePegawai = new pegawaiModel();
     public void updateNamaPegawai() throws SQLException {
         Scanner input = new Scanner(System.in);
